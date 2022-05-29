@@ -1,11 +1,7 @@
-.NavBar {
+.NavColor > h1 {
     color: white;
 }
 
-.Brand > h1 {
-    color: white;
-}
-
-.navbar-light .navbar-nav .nav-link {
+.NavColor > span {
     color: white;
 }
