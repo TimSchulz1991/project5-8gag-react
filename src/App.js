@@ -2,6 +2,8 @@ import NavBar from "./components/NavBar";
 import styles from "./App.module.css";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
+import "./api/axiosDefaults";
+import SignUpForm from './pages/auth/SignUpForm'
 
 function App() {
     return (
@@ -18,7 +20,7 @@ function App() {
                     <Route
                         exact
                         path="/signup"
-                        render={() => <h1>Sign up</h1>}
+                        render={() => <SignUpForm />}
                     />
                     <Route render={() => <p>Page not found!</p>} />
                 </Switch>
