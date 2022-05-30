@@ -1,7 +1,7 @@
-.NavColor > h1 {
-    color: white;
+.NavBar {
+    background: black;
 }
 
-.NavColor > span {
+a {
     color: white;
-}
+  }

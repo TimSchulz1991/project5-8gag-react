@@ -5,22 +5,22 @@ import styles from '../styles/NavBar.module.css'
 
 const NavBar = () => {
   return (
-    <Navbar expand="md" fixed="top" variant="dark">
+    <Navbar expand="md" fixed="top" variant="dark" className={styles.NavBar}>
       <Container >
-        <Navbar.Brand className={styles.NavColor}>
-          <h1 >8GAG</h1>
+        <Navbar.Brand>
+          <h1 className="mb-0">8GAG</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-md-auto text-center">
             <Nav.Link>
-              <span>Home</span>
+              Home
             </Nav.Link>
             <Nav.Link>
-              <span>Sign In</span>
+              Sign In
             </Nav.Link>
             <Nav.Link>
-              <span>Sign Up</span>
+              Sign Up
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
