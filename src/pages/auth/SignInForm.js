@@ -15,8 +15,11 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import meme from "../../assets/burningHouseMeme.jpeg";
+import { useSetCurrentUser } from "../../context/CurrentUserContext";
 
 function SignInForm() {
+
+    const setCurrentUser = useSetCurrentUser();
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",
@@ -39,7 +42,7 @@ function SignInForm() {
                 "/dj-rest-auth/login/",
                 signInData
             );
-            // setCurrentUser(data.user);
+            setCurrentUser(data.user);
             // setTokenTimestamp(data);
             history.push("/")
         } catch (err) {
@@ -49,7 +52,7 @@ function SignInForm() {
 
     return (
         <Row className={styles.Row}>
-            <Col className="my-auto p-0 p-md-2" md={6}>
+            <Col className="my-auto py-2 p-md-2" md={6}>
                 <Container className={`${appStyles.Content} p-4 `}>
                     <h1 className={styles.Header}>sign in</h1>
                     <Form onSubmit={handleSubmit}>
