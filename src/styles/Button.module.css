@@ -1,7 +1,7 @@
 
    
 .Button {
-    font-size: 0.8rem;
+    font-size: 1rem;
     align-self: center;
     border-radius: 100px;
     border-color: transparent;
@@ -34,7 +34,7 @@
     width: 100%;
   }
   
-  .Blue,
+  /* .Blue,
   .BlueOutline:hover,
   .Bright:hover {
     background-color: #2142b2;
@@ -44,17 +44,17 @@
   .BlueOutline,
   .Blue:hover {
     /* border: 1px solid #2142b2; */
-    background-color: #ffffff;
+    /* background-color: #ffffff;
     color: #2142b2;
-  }
+  /* } */
   
-  .Black,
+  /* .Black,
   .BlackOutline:hover {
     /* background-color: #242a3d;
     color: white; */
-    background-color: #242a3d;
+    /* background-color: #242a3d;
     color: aliceblue;
-  }
+  } */
   
   .Black:hover,
   .BlackOutline {
