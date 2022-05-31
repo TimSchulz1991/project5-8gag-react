@@ -3,24 +3,29 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import btnStyles from "../styles/Button.module.css";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../context/CurrentUserContext";
+import {
+    useCurrentUser,
+    useSetCurrentUser,
+} from "../context/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
-import { useSetCurrentUser } from "../context/CurrentUserContext";
+import useClickOutsideToggle from "../hooks/UseClickOutsideToggle";
 
 const NavBar = () => {
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
 
+    const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
     const handleSignOut = async () => {
         try {
-          await axios.post("dj-rest-auth/logout/");
-          setCurrentUser(null);
-        //   removeTokenTimestamp();
+            await axios.post("dj-rest-auth/logout/");
+            setCurrentUser(null);
+            //   removeTokenTimestamp();
         } catch (err) {
-          console.log(err);
+            console.log(err);
         }
-      };
+    };
 
     const addPostIcon = (
         <NavLink
@@ -40,7 +45,11 @@ const NavBar = () => {
             >
                 Liked
             </NavLink>
-            <NavLink className="ml-3 my-auto p-1" to="/" onClick={handleSignOut}>
+            <NavLink
+                className="ml-3 my-auto p-1"
+                to="/"
+                onClick={handleSignOut}
+            >
                 Sign out
             </NavLink>
             <NavLink
@@ -76,6 +85,7 @@ const NavBar = () => {
 
     return (
         <Navbar
+            expanded={expanded}
             expand="md"
             fixed="top"
             variant="dark"
@@ -88,7 +98,11 @@ const NavBar = () => {
                     </Navbar.Brand>
                 </NavLink>
                 {currentUser && addPostIcon}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle
+                    ref={ref}
+                    onClick={() => setExpanded(!expanded)}
+                    aria-controls="basic-navbar-nav"
+                />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-md-auto text-center">
                         <NavLink
