@@ -10,7 +10,7 @@ code {
 a {color: white;}
 
 a:hover {
-  color: #0275d8
+  color: #fff
   !important;
   transition: color ease-in-out 0.3s;
   text-decoration: none;

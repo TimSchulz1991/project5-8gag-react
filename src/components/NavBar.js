@@ -1,41 +1,71 @@
 import React from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import btnStyles from "../styles/Button.module.css";
 import { NavLink } from "react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
-// import FontAwesomeIcon 
+import Avatar from "./Avatar";
+import axios from "axios";
+import { useSetCurrentUser } from "../context/CurrentUserContext";
 
 const NavBar = () => {
     const currentUser = useCurrentUser();
+    const setCurrentUser = useSetCurrentUser();
+
+    const handleSignOut = async () => {
+        try {
+          await axios.post("dj-rest-auth/logout/");
+          setCurrentUser(null);
+        //   removeTokenTimestamp();
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
     const addPostIcon = (
         <NavLink
-            // className={styles.NavLink}
-            // activeClassName={styles.Active}
             to="/posts/create"
+            className={`${btnStyles.Button} ${btnStyles.Bright}`}
         >
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Bright}`}
-                type="submit"
-            >
-                <i className="far fa-plus-square"></i> Create new post
-            </Button>
+            Create new post
         </NavLink>
     );
 
-    const loggedInIcons = <>{currentUser?.username}</>;
+    const loggedInIcons = (
+        <>
+            <NavLink
+                className="ml-3 my-auto p-1"
+                activeClassName={styles.Active}
+                to="/liked"
+            >
+                Liked
+            </NavLink>
+            <NavLink className="ml-3 my-auto p-1" to="/" onClick={handleSignOut}>
+                Sign out
+            </NavLink>
+            <NavLink
+                className="ml-3 my-auto p-1"
+                to={`/profiles/${currentUser?.profile_id}`}
+            >
+                <Avatar
+                    src={currentUser?.profile_image}
+                    text="Profile"
+                    height={40}
+                />
+            </NavLink>
+        </>
+    );
     const loggedOutIcons = (
         <>
             <NavLink
-                className="ml-3"
+                className="ml-3 my-auto p-1"
                 activeClassName={styles.Active}
                 to="/signin"
             >
                 Sign In
             </NavLink>
             <NavLink
-                className="ml-3"
+                className="ml-3 my-auto p-1"
                 activeClassName={styles.Active}
                 to="/signup"
             >
@@ -63,7 +93,7 @@ const NavBar = () => {
                     <Nav className="ml-md-auto text-center">
                         <NavLink
                             exact
-                            className="ml-3"
+                            className="ml-3 my-auto p-1"
                             activeClassName={styles.Active}
                             to="/"
                         >
