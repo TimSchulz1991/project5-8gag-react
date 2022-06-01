@@ -34,6 +34,38 @@
     width: 100%;
   }
   
+  .Blue,
+.BlueOutline:hover,
+.Bright:hover {
+  background-color: #0275d8;
+  color: #ffffff;
+}
+
+.BlueOutline,
+.Blue:hover {
+  border: 1px solid #0275d8;
+  background-color: #ffffff;
+  color: #0275d8;
+}
+
+.Black,
+.BlackOutline:hover {
+  background-color: #242a3d;
+  color: white;
+  background-color: #242a3d;
+  color: aliceblue;
+}
+
+.Black:hover,
+.BlackOutline {
+  background-color: #dadadf;
+  color: #242a3d;
+  border-color: #242a3d;
+  background-color: aliceblue;
+  color: #242a3d;
+}
+
+
   .Bright {
     background-color: #0275d8;
     color: #ffffff;
