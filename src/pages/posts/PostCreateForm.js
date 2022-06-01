@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -25,21 +27,43 @@ function PostCreateForm() {
     
     const { title, topic, image } = postData;
 
-    const handleChange = (event) => {
-        console.log(event)
+    const imageInput = useRef(null);
+    const history = useHistory();
+
+    const handleChange = (e) => {
+        console.log(e)
         setPostData({
             ...postData,
-            [event.target.name]: event.target.value,
+            [e.target.name]: e.target.value,
         });
     };
 
-    const handleChangeImage = (event) => {
-        if (event.target.files.length) {
+    const handleChangeImage = (e) => {
+        if (e.target.files.length) {
             URL.revokeObjectURL(image);
             setPostData({
                 ...postData,
-                image: URL.createObjectURL(event.target.files[0]),
+                image: URL.createObjectURL(e.target.files[0]),
             });
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("topic", topic);
+        formData.append("image", imageInput.current.files[0]);
+        console.log(formData);
+        try {
+            const { data } = await axiosReq.post("/posts/", formData);
+            history.push(`/posts/${data.id}`);
+        } catch (err) {
+            console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
     };
 
@@ -56,7 +80,7 @@ function PostCreateForm() {
             </Form.Group>
             <Form.Group>
                 <Form.Label>Topic</Form.Label>
-                <Form.Control onChange={handleChange} as="select">
+                <Form.Control onChange={handleChange} as="select" name="topic">
                     <option>Choose a topic</option>
                     <option value="funny">Funny</option>
                     <option value="wholesome">Wholesome</option>
@@ -86,7 +110,7 @@ function PostCreateForm() {
     );
 
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container
@@ -127,6 +151,7 @@ function PostCreateForm() {
                                 id="image-upload"
                                 accept="image/*"
                                 onChange={handleChangeImage}
+                                ref={imageInput}
                             />
                         </Form.Group>
                         <div className="d-md-none">{textFields}</div>

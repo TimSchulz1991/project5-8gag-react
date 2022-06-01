@@ -59,7 +59,7 @@ function SignInForm() {
                         <Form.Group controlId="username">
                             <Form.Label className="d-none">Username</Form.Label>
                             <Form.Control
-                                classname={styles.Input}
+                                className={styles.Input}
                                 type="text"
                                 placeholder="Username"
                                 name="username"
@@ -76,7 +76,7 @@ function SignInForm() {
                         <Form.Group controlId="password">
                             <Form.Label className="d-none">Password</Form.Label>
                             <Form.Control
-                                classname={styles.Input}
+                                className={styles.Input}
                                 type="password"
                                 placeholder="Password"
                                 name="password"
