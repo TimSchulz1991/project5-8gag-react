@@ -54,6 +54,7 @@ const NavBar = () => {
             </NavLink>
             <NavLink
                 className="ml-3 my-auto p-1"
+                activeClassName={styles.Active}
                 to={`/profiles/${currentUser?.profile_id}`}
             >
                 <Avatar
