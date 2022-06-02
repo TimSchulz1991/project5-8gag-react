@@ -19,7 +19,7 @@ import Asset from "../../components/Asset";
 
 function PostCreateForm() {
     const [errors, setErrors] = useState({});
-
+    console.log(errors)
     const [postData, setPostData] = useState({
         title: "",
         topic: "",
@@ -88,6 +88,7 @@ function PostCreateForm() {
             <Form.Group>
                 <Form.Label>Topic</Form.Label>
                 <Form.Control onChange={handleChange} as="select" name="topic">
+                    <option value="">Choose a topic...</option>
                     <option value="funny">Funny</option>
                     <option value="wholesome">Wholesome</option>
                     <option value="wtf">WTF</option>
