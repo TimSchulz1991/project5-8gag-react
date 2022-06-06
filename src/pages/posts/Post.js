@@ -30,17 +30,17 @@ const Post = (props) => {
     const history = useHistory();
 
     const handleEdit = () => {
-      history.push(`/posts/${id}/edit`)
-  }
+        history.push(`/posts/${id}/edit`);
+    };
 
-  const handleDelete = async () => {
-      try {
-          await axiosRes.delete(`/posts/${id}`);
-          history.goBack();
-      } catch (err) {
-          // console.log(err);
-      }
-  }
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/posts/${id}`);
+            history.goBack();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const handleLike = async () => {
         try {
@@ -103,9 +103,12 @@ const Post = (props) => {
                         )}
                     </div>
                 </Media>
-                <Card.Title className="text-left ml-2 mt-4">
-                    <h2>{title}</h2>
-                </Card.Title>
+                <Link to={`/posts/${id}`} className={styles.Link}>
+                    <Card.Title className="text-left ml-2 mt-4 mb-0">
+                        <h2>{title}<i
+                            class="fas fa-angle-double-right"></i></h2>
+                    </Card.Title>
+                </Link>
             </Card.Body>
             <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />

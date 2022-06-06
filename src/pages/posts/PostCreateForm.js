@@ -8,7 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
-import Alert from 'react-bootstrap/Alert'
+import Alert from "react-bootstrap/Alert";
 
 import Upload from "../../assets/upload.png";
 
@@ -19,20 +19,20 @@ import Asset from "../../components/Asset";
 
 function PostCreateForm() {
     const [errors, setErrors] = useState({});
-    console.log(errors)
+
     const [postData, setPostData] = useState({
         title: "",
         topic: "",
         image: "",
     });
-    
+
     const { title, topic, image } = postData;
 
     const imageInput = useRef(null);
     const history = useHistory();
 
     const handleChange = (e) => {
-        console.log(e)
+        console.log(e);
         setPostData({
             ...postData,
             [e.target.name]: e.target.value,
@@ -70,37 +70,41 @@ function PostCreateForm() {
 
     const textFields = (
         <div className="text-center">
-            <Form.Group>
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                    type="text"
-                    name="title"
-                    value={title}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            {errors?.title?.map((message, idx) => (
+                <Form.Group>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="title"
+                        value={title}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                {errors?.title?.map((message, idx) => (
                     <Alert variant="warning" key={idx}>
                         {message}
                     </Alert>
                 ))}
 
-            <Form.Group>
-                <Form.Label>Topic</Form.Label>
-                <Form.Control onChange={handleChange} as="select" name="topic">
-                    <option value="">Choose a topic...</option>
-                    <option value="funny">Funny</option>
-                    <option value="wholesome">Wholesome</option>
-                    <option value="wtf">WTF</option>
-                    <option value="cryptocurrency">Cryptocurrency</option>
-                    <option value="animals">Animals</option>
-                    <option value="awesome">Awesome</option>
-                    <option value="gaming">Gaming</option>
-                    <option value="meme">Meme</option>
-                    <option value="relationship">Relationship</option>
-                </Form.Control>
-            </Form.Group>
-            {errors?.topic?.map((message, idx) => (
+                <Form.Group>
+                    <Form.Label>Topic</Form.Label>
+                    <Form.Control
+                        onChange={handleChange}
+                        as="select"
+                        name="topic"
+                    >
+                        <option value="">Choose a topic...</option>
+                        <option value="funny">Funny</option>
+                        <option value="wholesome">Wholesome</option>
+                        <option value="wtf">WTF</option>
+                        <option value="cryptocurrency">Cryptocurrency</option>
+                        <option value="animals">Animals</option>
+                        <option value="awesome">Awesome</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="meme">Meme</option>
+                        <option value="relationship">Relationship</option>
+                    </Form.Control>
+                </Form.Group>
+                {errors?.topic?.map((message, idx) => (
                     <Alert variant="warning" key={idx}>
                         {message}
                     </Alert>

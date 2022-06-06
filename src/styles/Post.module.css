@@ -10,6 +10,14 @@
   background: #2BBBAD;
 }
 
+.Link {
+  color: white;
+}
+
+.Link h2 {
+  margin-bottom: 0;
+}
+
   .Post figure,
   h5 {
     margin: 0 0;
