@@ -9,6 +9,7 @@ import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import PostEditForm from "./pages/posts/PostEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 import { useCurrentUser } from "./context/CurrentUserContext";
 
 function App() {
@@ -55,6 +56,11 @@ function App() {
                         exact
                         path="/posts/:id/edit"
                         render={() => <PostEditForm />}
+                    />
+                    <Route
+                        exact
+                        path="/profiles/:id/"
+                        render={() => <ProfilePage />}
                     />
                     <Route render={() => <p>Page not found!</p>} />
                 </Switch>
