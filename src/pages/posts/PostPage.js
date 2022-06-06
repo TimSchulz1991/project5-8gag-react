@@ -10,6 +10,7 @@ import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
 import Post from "./Post";
+import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../context/CurrentUserContext";
@@ -54,6 +55,15 @@ function PostPage() {
                     ) : comments.results.length ? (
                         "Comments"
                     ) : null}
+                    {comments.results.length ? (
+                        comments.results.map((comment) => (
+                            <Comment key={comment.id} {...comment} setPost={setPost} setComments={setComments}/>
+                        ))
+                    ) : currentUser ? (
+                        <span>No comments yet, be the first to comment!</span>
+                    ) : (
+                        <span>No comments... yet</span>
+                    )}
                 </Container>
             </Col>
         </Row>

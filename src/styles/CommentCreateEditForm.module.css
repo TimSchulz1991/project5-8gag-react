@@ -9,7 +9,7 @@
     border-radius: 100px;
     padding: 4px 10px;
     min-width: 75px;
-    margin: 5px;
+    margin: 0;
   }
   
   .Button:hover {
