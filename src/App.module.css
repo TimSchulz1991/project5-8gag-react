@@ -11,6 +11,9 @@ body {
 .Content {
   background-color: #111827;
   padding: 10px;
+}
+
+.ContentBorder {
   border-radius: 2px;
   border: 1px solid #dadadf;
 }
