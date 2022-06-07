@@ -12,7 +12,7 @@ import Post from "../posts/Post";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 
-import { useCurrentUser } from "../../context/CurrentUserContext";
+// import { useCurrentUser } from "../../context/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
@@ -23,13 +23,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [profilePosts, setProfilePosts] = useState({ results: [] });
-    const currentUser = useCurrentUser();
+    // const currentUser = useCurrentUser();
     const { id } = useParams();
     const [profileData, setProfileData] = useState({
         pageProfile: { results: [] },
     });
     const [profile] = profileData.pageProfile.results;
-    const is_owner = currentUser?.username === profile?.owner;
+    // const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -80,27 +80,12 @@ function ProfilePage() {
                         </Col> */}
                     </Row>
                 </Col>
-                {/* <Col lg={3} className="text-lg-right">
-                    {currentUser &&
-                        !is_owner &&
-                        (profile?.following_id ? (
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                                onClick={() => {}}
-                            >
-                                unfollow
-                            </Button>
-                        ) : (
-                            <Button
-                                className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                onClick={() => {}}
-                            >
-                                follow
-                            </Button>
-                        ))}
-                </Col> */}
+                <Col lg={3}>
+                    
+                </Col>
+
                 {profile?.content && (
-                    <Col className="p-3">{profile.content}</Col>
+                    <Col className={`p-3 ${styles.Bio}`}>Bio: <br></br> {profile.content}</Col>
                 )}
             </Row>
         </>
@@ -109,7 +94,7 @@ function ProfilePage() {
     const mainProfilePosts = (
         <>
             <hr />
-            <p className="text-center">{profile?.owner}'s posts</p>
+            <h4 className="text-center">{profile?.owner}'s posts</h4>
             <hr />
             {profilePosts.results.length ? (
                 <InfiniteScroll

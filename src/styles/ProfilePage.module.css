@@ -4,6 +4,11 @@
     width: 120px;
     margin: 4px;
   }
+
+.Bio {
+  font-size: 1.2rem;
+  border: 1px solid #dadadf;
+}
   
   @media screen and (max-width: 991px) {
     .ProfileImage {
