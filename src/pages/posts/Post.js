@@ -105,8 +105,7 @@ const Post = (props) => {
                 </Media>
                 <Link to={`/posts/${id}`} className={styles.Link}>
                     <Card.Title className="text-left ml-2 mt-4 mb-0">
-                        <h2>{title}<i
-                            class="fas fa-angle-double-right"></i></h2>
+                        <h2>{title}</h2>
                     </Card.Title>
                 </Link>
             </Card.Body>

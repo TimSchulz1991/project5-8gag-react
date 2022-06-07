@@ -12,33 +12,33 @@ import Post from "../posts/Post";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 
-// import { useCurrentUser } from "../../context/CurrentUserContext";
+import { useCurrentUser } from "../../context/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-
-
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [profilePosts, setProfilePosts] = useState({ results: [] });
-    // const currentUser = useCurrentUser();
+    const currentUser = useCurrentUser();
     const { id } = useParams();
     const [profileData, setProfileData] = useState({
-      pageProfile: { results: [] },
-  });
+        pageProfile: { results: [] },
+    });
     const [profile] = profileData.pageProfile.results;
-    // const is_owner = currentUser?.username === profile?.owner;
+    const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [{ data: pageProfile }, { data: profilePosts }] = await Promise.all([
-                    axiosReq.get(`/profiles/${id}/`),
-                    axiosReq.get(`/posts/?owner__profile=${id}`),
-                ]);
+                const [{ data: pageProfile }, { data: profilePosts }] =
+                    await Promise.all([
+                        axiosReq.get(`/profiles/${id}/`),
+                        axiosReq.get(`/posts/?owner__profile=${id}`),
+                    ]);
                 setProfileData((prevState) => ({
                     ...prevState,
                     pageProfile: { results: [pageProfile] },
@@ -54,6 +54,7 @@ function ProfilePage() {
 
     const mainProfile = (
         <>
+            {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
                     <Image
@@ -136,7 +137,9 @@ function ProfilePage() {
     return (
         <Row>
             <Col className="py-2 p-0 p-lg-2" lg={{ span: 8, offset: 2 }}>
-                <Container className={`${appStyles.Content} ${appStyles.ContentBorder}`}>
+                <Container
+                    className={`${appStyles.Content} ${appStyles.ContentBorder}`}
+                >
                     {hasLoaded ? (
                         <>
                             {mainProfile}
