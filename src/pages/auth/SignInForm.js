@@ -16,10 +16,13 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import meme from "../../assets/burningHouseMeme.jpeg";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
+import { useRedirect } from "../../hooks/UseRedirect";
 
 function SignInForm() {
 
     const setCurrentUser = useSetCurrentUser();
+    useRedirect("loggedIn")
+
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",
@@ -44,7 +47,7 @@ function SignInForm() {
             );
             setCurrentUser(data.user);
             // setTokenTimestamp(data);
-            history.push("/")
+            history.goBack();
         } catch (err) {
             setErrors(err.response?.data);
         }

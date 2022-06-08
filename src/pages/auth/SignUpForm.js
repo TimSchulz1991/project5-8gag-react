@@ -9,9 +9,10 @@ import appStyles from "../../App.module.css";
 
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 import mainMeme from "../../assets/mainMeme.jpeg";
+import { useRedirect } from "../../hooks/UseRedirect";
 
 const SignUpForm = () => {
-
+    useRedirect("loggedIn");
     const [signUpData, setSignUpData] = useState({
         username: "",
         password1: "",
