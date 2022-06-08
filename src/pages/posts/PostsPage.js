@@ -4,11 +4,13 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Badge from "react-bootstrap/Badge";
 
 import Post from "./Post";
 import Asset from "../../components/Asset";
 
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -17,6 +19,7 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../context/CurrentUserContext";
+
 
 
 function PostsPage({ message, filter = "" }) {
@@ -95,7 +98,16 @@ function PostsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col lg={3} className="d-none d-lg-block">
-        <p>Popular profiles for desktop</p>
+        <h3 className="text-center mt-3">Topics</h3>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Funny</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Wholesome</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>WTF</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Cryptocurrency</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Animals</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Awesome</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Gaming</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Meme</Badge>
+        <Badge variant="info" pill className={`${styles.Badge}`}>Relationship</Badge>
       </Col>
     </Row>
   );
