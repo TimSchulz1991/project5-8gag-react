@@ -12,7 +12,6 @@ import Post from "../posts/Post";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 
-// import { useCurrentUser } from "../../context/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
@@ -23,13 +22,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [profilePosts, setProfilePosts] = useState({ results: [] });
-    // const currentUser = useCurrentUser();
+
     const { id } = useParams();
     const [profileData, setProfileData] = useState({
         pageProfile: { results: [] },
     });
     const [profile] = profileData.pageProfile.results;
-    // const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,14 +68,6 @@ function ProfilePage() {
                             <div>{profile?.posts_count}</div>
                             <div>posts</div>
                         </Col>
-                        {/* <Col xs={3} className="my-2">
-                            <div>{profile?.followers_count}</div>
-                            <div>followers</div>
-                        </Col>
-                        <Col xs={3} className="my-2">
-                            <div>{profile?.following_count}</div>
-                            <div>following</div>
-                        </Col> */}
                     </Row>
                 </Col>
                 <Col lg={3}>
@@ -135,7 +125,6 @@ function ProfilePage() {
                     )}
                 </Container>
             </Col>
-            {/* <Col lg={4} className="d-none d-lg-block p-0 p-lg-2"></Col> */}
         </Row>
     );
 }

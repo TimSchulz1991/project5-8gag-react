@@ -2,18 +2,18 @@
     border: none;
   }
   
-  .Button {
-    border: none;
-    background-color: #0275d8;
-    color: white;
-    border-radius: 100px;
-    padding: 4px 10px;
-    min-width: 75px;
-    margin: 0;
-  }
-  
-  .Button:hover {
-    cursor: pointer;
-    background-color: #2142b2;
-    color: aliceblue;
-  }
+.Button {
+  border: none;
+  background-color: #0275d8;
+  color: white;
+  border-radius: 100px;
+  padding: 4px 10px;
+  min-width: 75px;
+  margin: 0;
+}
+
+.Button:hover {
+  cursor: pointer;
+  background-color: #2142b2;
+  color: aliceblue;
+}

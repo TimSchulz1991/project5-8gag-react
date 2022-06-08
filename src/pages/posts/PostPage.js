@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// the change of import shouldn't affect things, but this is just to keep inline with the lessons
-// you can test it to see if using react-router-dom works again, now that the 'undefined' error is also removed
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 

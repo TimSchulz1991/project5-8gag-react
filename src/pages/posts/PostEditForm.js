@@ -45,10 +45,6 @@ function PostEditForm() {
         handleMount();
     }, [history, id]);
 
-    // useEffect(() => {
-    //     console.log("postData", postData);
-    // }, [postData]);
-
     const handleChange = (e) => {
         setPostData({
             ...postData,

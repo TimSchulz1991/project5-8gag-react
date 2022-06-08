@@ -1,9 +1,9 @@
 .DropdownItem {
-    display: inline-block;
-    max-width: 50%;
-    padding: 0px;
-    background-color: rgb(106, 106, 106);
-  }
+  display: inline-block;
+  max-width: 50%;
+  padding: 0px;
+  background-color: rgb(106, 106, 106);
+}
 
 .ProfileItem {
   padding: 5px;
