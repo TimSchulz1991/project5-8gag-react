@@ -17,6 +17,7 @@ import appStyles from "../../App.module.css";
 import meme from "../../assets/burningHouseMeme.jpeg";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
 import { useRedirect } from "../../hooks/UseRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
 
@@ -46,7 +47,7 @@ function SignInForm() {
                 signInData
             );
             setCurrentUser(data.user);
-            // setTokenTimestamp(data);
+            setTokenTimestamp(data);
             history.goBack();
         } catch (err) {
             setErrors(err.response?.data);
