@@ -50,7 +50,6 @@ function PostEditForm() {
     // }, [postData]);
 
     const handleChange = (e) => {
-        console.log(e);
         setPostData({
             ...postData,
             [e.target.name]: e.target.value,
@@ -81,7 +80,7 @@ function PostEditForm() {
             await axiosReq.put(`/posts/${id}/`, formData);
             history.push(`/posts/${id}`);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }

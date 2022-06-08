@@ -34,7 +34,6 @@ function PostCreateForm() {
     const history = useHistory();
 
     const handleChange = (e) => {
-        console.log(e);
         setPostData({
             ...postData,
             [e.target.name]: e.target.value,
@@ -58,12 +57,12 @@ function PostCreateForm() {
         formData.append("title", title);
         formData.append("topic", topic);
         formData.append("image", imageInput.current.files[0]);
-        console.log(formData);
+
         try {
             const { data } = await axiosReq.post("/posts/", formData);
             history.push(`/posts/${data.id}`);
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
