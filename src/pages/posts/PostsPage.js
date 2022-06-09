@@ -54,9 +54,9 @@ function PostsPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2 mx-4" lg={8}>
+            <Col className="py-2 p-0 p-lg-2 mx-4" md={8}>
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
-            
+
                 <Form
                     className={styles.SearchBar}
                     onSubmit={(event) => event.preventDefault()}
@@ -70,21 +70,88 @@ function PostsPage({ message, filter = "" }) {
                             placeholder="Search posts"
                         />
                         <div
-                            style={{
-                                position: "absolute",
-                                top: "10px",
-                                right: "14px",
-                                fontSize: "0.9rem",
-                                color: "black",
-                                cursor: "pointer",
-                            }}
+                            className={styles.Clear}
                             onClick={() => setQuery("")}
                         >
                             CLEAR
                         </div>
                     </div>
                 </Form>
-
+                <div>
+                    <Col className="d-md-none mb-4">
+                        <h3 className="text-center my-3">Topics</h3>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic(null)}
+                        >
+                            All topics
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("funny")}
+                        >
+                            Funny
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("wholesome")}
+                        >
+                            Wholesome
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("wtf")}
+                        >
+                            WTF
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("cryptocurrency")}
+                        >
+                            Cryptocurrency
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("animals")}
+                        >
+                            Animals
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("awesome")}
+                        >
+                            Awesome
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("gaming")}
+                        >
+                            Gaming
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("meme")}
+                        >
+                            Meme
+                        </Button>
+                        <Button
+                            variant="info"
+                            className={`${styles.Button} py-0 mr-2 mb-2`}
+                            onClick={() => setTopic("relationship")}
+                        >
+                            Relationship
+                        </Button>
+                    </Col>
+                </div>
                 {hasLoaded ? (
                     <>
                         {posts.results.length ? (
@@ -113,7 +180,7 @@ function PostsPage({ message, filter = "" }) {
                     </Container>
                 )}
             </Col>
-            <Col lg={3} className="d-none d-lg-block">
+            <Col md={3} className="d-none d-md-block">
                 <h3 className="text-center my-3">Topics</h3>
                 <Button
                     variant="info"
@@ -132,48 +199,56 @@ function PostsPage({ message, filter = "" }) {
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("wholesome")}
                 >
                     Wholesome
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("wtf")}
                 >
                     WTF
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("cryptocurrency")}
                 >
                     Cryptocurrency
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("animals")}
                 >
                     Animals
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("awesome")}
                 >
                     Awesome
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("gaming")}
                 >
                     Gaming
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("meme")}
                 >
                     Meme
                 </Button>
                 <Button
                     variant="info"
                     className={`${styles.Button} py-0 mr-2 mb-2`}
+                    onClick={() => setTopic("relationship")}
                 >
                     Relationship
                 </Button>
