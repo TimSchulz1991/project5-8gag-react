@@ -96,7 +96,7 @@ const NavBar = () => {
             className={styles.NavBar}
         >
             <Container>
-                <NavLink to="/">
+                <NavLink to="/" onClick={() => window.location.href = "/"}>
                     <Navbar.Brand>
                         <h1 className="mb-0">8GAG</h1>
                     </Navbar.Brand>

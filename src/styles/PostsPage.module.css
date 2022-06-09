@@ -17,6 +17,7 @@
   color: #cfced3;
 }
 
-.Badge {
+.Button {
   font-size: 1.2rem;
+  border-radius: 30px;
 }
