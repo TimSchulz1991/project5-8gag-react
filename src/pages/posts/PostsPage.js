@@ -180,7 +180,7 @@ function PostsPage({ message, filter = "" }) {
                     </Container>
                 )}
             </Col>
-            <Col md={3} className="d-none d-md-block">
+            <Col md={3} className={`d-none d-md-block`}>
                 <h3 className="text-center my-3">Topics</h3>
                 <Button
                     variant="info"
