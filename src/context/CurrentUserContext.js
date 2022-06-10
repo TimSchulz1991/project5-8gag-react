@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useHistory } from "react-router";
-import { shouldRefreshToken, removeTokenTimestamp } from "../utils/utils";
+import { shouldRefreshToken, clearTokens, setTokens } from "../utils/utils";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -16,7 +16,11 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
+      const { data } = await axiosRes.get("dj-rest-auth/user/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       setCurrentUser(data);
     } catch (err) {
       // console.log(err);
@@ -32,7 +36,10 @@ export const CurrentUserProvider = ({ children }) => {
       async (config) => {
         if (shouldRefreshToken()) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const { data } = await axios.post("/dj-rest-auth/refresh/", {
+              refresh: localStorage.getItem("refreshToken"),
+            });
+            setTokens(data);
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -40,10 +47,11 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp();
+            clearTokens();
             return config;
           }
         }
+        config.headers.Authorization = localStorage.getItem("accessToken");
         return config;
       },
       (err) => {
@@ -56,7 +64,10 @@ export const CurrentUserProvider = ({ children }) => {
       async (err) => {
         if (err.response?.status === 401) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const { data } = await axios.post("/dj-rest-auth/refresh/", {
+              refresh: localStorage.getItem("refreshToken"),
+            });
+            setTokens(data);
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -64,7 +75,7 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-            removeTokenTimestamp();
+            clearTokens();
           }
           return axios(err.config);
         }
