@@ -230,17 +230,62 @@ The W3C Markup Validator, W3C CSS Validator Services and ESLint were used to val
 | Sign up navbar     | Click "Sign up" link                         | Take the user to the sign up page.                                                                                                | ✓    |
 | Sign up page       | Click "Sign up" button                       | If user signs up successfully, redirect to log in page.                                                                                        | ✓    |
 | Sign up page       | Click "Log in" link                          | Take the user to the log in page.                                                                                                 | ✓    |
-| Sign up/log in     | Enter URL for sign up/log in while logged in | Redirects user to home page.                                                                                                      | ✓    |
+| Sign up/log in     | Enter URL for sign up/sign in while logged in | Redirects user to home page.                                                                                                      | ✓    |
 | Log out navbar     | Click "Log out" link                         | Log out user and redirect to home page.                                                                                           | ✓    |
 | Create post navbar | Click "Create new post" button                           | When logged in, takes the user to the create post page.                                                                           | ✓    |
 | Create post page   | Click "Create" button                        | If user creates post successfully, redirect to this post.                                                                                      | ✓    |
+| Create post page     | Click "Cancel" button                        | Take user back to the previous page.                                                                                                       | ✓    |
 | "Home" in navbar | Click "Home" link                            | Render list of all posts, sorted by latest first.                                                                           | ✓    |
-| Post "Liked"       | Click "Liked" link                           | Render list of posts the user has liked.                                                                                          | ✓    |
+| Post "Liked"       | Click "Liked" link                           | Render list of posts the user has liked, sorted by latest first.                                                                                          | ✓    |
 | Profile navbar     | Click profile image or on "Profile" link                  | Take user to user's profile page                                                                                                  | ✓    |
 | Profile on Post  | Click profile image or name                  | Take user to the clicked user's profile page.                                                                                     | ✓    |
+| Post  | Click post title or image             | Take user to the clicked post's page.                                                                                     | ✓    |
+| Comment icon on Post | Click comment icon                | Take user to the clicked post's page.                                                                                     | ✓    |
 | Edit post (when owner)          | Click edit icon in dropdown                  | Take user to edit post page.                                                                                                      | ✓    |
 | Edit post page     | Click "Save" button                          | Take user to newly edited post.                                                                                                   | ✓    |
 | Edit post page     | Click "Cancel" button                        | Take user back to the post.                                                                                                       | ✓    |
-| Delete post        | Click delete icon in dropdown                | Delete post and take user to previous page.                                                                                       | ✓    |
+| Delete post (when owner)       | Click delete icon in dropdown                | Delete post and take user to previous page.                                                                                       | ✓    |
 | Infinite scroll    | Scrolling to end of page                     | Render new posts and/or comments if there's more than 10 of any.                                                                  | ✓    |
 | Unauthorized       | Visit page unauthorized                      | Reaching a create, edit or delete page through URL manipulation to content the user is not authorized for, redirect to home page. | ✓    |
+
+### Features
+
+| Test            | Action                 | Expected Result                                                                                                          | Pass |
+| --------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---- |
+| Like/unlike     | Click like icon        | When clicked, increment/decrement like counter and to liked posts.                                                       | ✓    |
+| Like/unlike     | Click like icon        | When clicked, liked posts appear in "Liked" list view. Unliked posts disappear from "Liked" list view.                   | ✓    |
+| Comment         | Click "Comment" button | When clicked, increment comment count and add comment.                                                                   | ✓    |
+| Comment         | Comment icon           | Take user to the specific post and display comments with username and date of comment.                                   | ✓    |
+| Search Bar         | Type anything          | After one second, the search result should come back (user can search for author and title of meme).                          | ✓    |
+| Search Bar - Clear button   | Click it    | Takes the user back to the main feed with all memes.                          | ✓    |
+| Topic buttons         | Click button        | Let's the user filter for memes in a certain category.                              | ✓    |
+| All topics button         | Click button     | Takes the user back to the main feed with all memes.                               | ✓    |
+| Profile page    | Posts list                   | All the specific user's posts (or a placeholder) can be seen.                                                                                                    | ✓    |
+| Profile page    | Edit page                     | Profile picture and bio can be added/changed (placeholder image in case none was provided).                                                                                                     | ✓    |
+| Edit password/username    | Click on "change username/pw"                    | They can be changed (if validation passes).                                                                                                       | ✓    |
+
+### Validation
+
+| Test        | Action               | Expected Result                                                                                                                         | Pass |
+| ----------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| Sign up     | Form valid           | If the form is valid, user is redirected to log in page.                                                                                | ✓    |
+| Sign up     | Form invalid         | If the form is not valid, i.e required field not filled, wrong password format or duplicate username the user is notified of the error. | ✓    |
+| Sign in      | Form valid           | If the form is valid, user is redirected to home page.                                                                                  | ✓    |
+| Sign in      | Form invalid         | If the form is not valid, i.e required field not filled or wrong password, the user is notified of the error.                           | ✓    |
+| Log out     | Logging out          | If the user logs out, the navbar reflects the change and pages reserved for logged in users are not displayed.                      | ✓    |
+| Create post | Create form valid    | If the form is valid, user is redirected to the newly created post.                                                                     | ✓    |
+| Create post | Create form invalid  | If the form is not valid, i.e required field not filled the user is notified of the error.                       | ✓    |
+| Edit post   | Edit form valid      | If the form is valid, user is redirected to the newly edited post.                                                                      | ✓    |
+| Edit post   | Edit form invalid    | If the form is not valid, the user is notified of the error.                                                                            | ✓    |
+| Delete post | Deleting post        | If the user deletes a post, the user is taken back to the previous page.                                                                            | ✓    |
+| Comment     | Comment form valid   | If the form is valid, a new comment is created.                                                                                         | ✓    |
+ Comment     | Comment form invalid | If the form is empty, clicking "Comment" button does nothing.                                                                           | ✓    |
+| Edit Comment     | Comment form valid   | If the form is valid, the comment is updated.                                                                                         | ✓    |
+| Edit Comment     | Comment form invalid   | If the form is invalid (empty), the "save" button cannot be clicked.                                                                                         | ✓    |
+| Delete Comment     | Deleting comment   | If the user deletes a comment, it is immediately removed from the comments list.                                                                                           | ✓    |
+
+## Error Handling
+
+| Test | Action                      | Expected Result                                                                                                                                                                    | Pass |
+| ---- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
+| 404  | Wrong URL                   | If page does not exist, display custom component on page.                    | ✓    |
