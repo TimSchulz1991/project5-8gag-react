@@ -294,7 +294,7 @@ The W3C Markup Validator, W3C CSS Validator Services and ESLint were used to val
 
 ## Bugs
 
-- Trying to log in on the Safari browser on desktop, and on mobile browsers, refreshes the page. This is because Safari is not setting the http-only cookie and localStorage timestamp. React cannot authenticate itself to the API. In more detail:
+- Trying to log in on the Safari browser on desktop, and on mobile browsers, refreshes the page. This is because the browser is not setting the http-only cookie and localStorage timestamp. React cannot authenticate itself to the API. In more detail:
   - The problem arises due to the fact that the DRF API and the React app are both on different domains; therefore, the browser will see that as cross domain, and try to block the cookies from being set
   - Fix: In the privacy settings of the browser, ticking off "Prevent cross-site tracking" works
 
