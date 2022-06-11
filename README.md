@@ -361,3 +361,7 @@ All the memes in the currently deployed page have been either taken from 9GAG an
 - A huge thanks to my colleague Ali for his ongoing help with all kinds of smaller issues and feedback throughout the project. Without you, the project would have taken me much longer to complete and I would have probably had a few more sleepless nights! 
 - My mentor, Antonio Rodriguez, at [Code Institute](https://codeinstitute.net/), for continuous helpful feedback and support.
 - The always super friendly and helpful tutor support at Code Institute.
+
+Thanks for checking out my project! 
+<br/>
+![Thank you!](src/assets/burningHouseMeme.jpeg)
