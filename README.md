@@ -60,10 +60,10 @@ In total, 18 user stories are a must-have and 3 are should-have. All of these ha
 ## Color Scheme
 The main colors used throughout the page are closely aligned to the dark colors of the 9GAG website (while browsing in dark mode). This makes the memes really "pop out" and puts them right into focus. 
 
-- The navigation bar is kept in black while the page background is kept in a very dark blue 
+- The navigation bar is kept in black while the page background is kept in a very dark blue (#111926)
 - Other elements (buttons/badges) follow the Bootstrap color scheme 
-- The page is using Bootstrap's blue for buttons and link hovering
-- Turquoise buttons/badges are used to display/filter for topics
+- The page is using Bootstrap's blue for buttons and link hovering (#0275d8)
+- Turquoise buttons/badges are used to display/filter for topics (#5bc0de)
 
 ## Typography
 A clean sans-serif font called 'Roboto Condensed', which is similar to the font used by 9GAG, has been used throughout the page in order to present the text in a clear, non-distracting way.
@@ -169,7 +169,7 @@ The W3C Markup Validator, W3C CSS Validator Services and ESLint were used to val
 - As a user I can create a new account so that I can access all the features for signed up users (MH)
     - Works as intended.
 - As a user I can sign in to the app so that I can access functionality for logged in users (MH)
-    - XXX
+    - Works in general, but there is one bug on Safari and mobile browsers (see the Bug section below).
 - As a user I can tell if I am logged in or not so that I can log in if I need to (MH)
     - This can be easily seen within the navbar; if the user is logged in, the Profile avatar can be seen.
 - As a user I can view a (conditionally rendering) navbar (based on logged-in status) from every page so that I can navigate easily between pages (MH)
@@ -289,3 +289,75 @@ The W3C Markup Validator, W3C CSS Validator Services and ESLint were used to val
 | Test | Action                      | Expected Result                                                                                                                                                                    | Pass |
 | ---- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
 | 404  | Wrong URL                   | If page does not exist, display custom component on page.                    | ✓    |
+| 404  | ID of posts non-existent    | Manually entering a posts/id URL that is non-existent, redirect to homepage (404 is not displayed because of routing issues concerning dynamic ID's).    | ✓    |
+| 404  | ID of profiles non-existent | Manually entering a profiles/id URL that is non-existent, redirect to homepage (404 is not displayed because of routing issues concerning dynamic ID's). | ✓    |
+
+## Bugs
+
+- Trying to log in on the Safari browser on desktop, and on mobile browsers, refreshes the page. This is because Safari is not setting the http-only cookie and localStorage timestamp. React cannot authenticate itself to the API. In more detail:
+  - The problem arises due to the fact that the DRF API and the React app are both on different domains; therefore, the browser will see that as cross domain, and try to block the cookies from being set
+  - Fix: In the privacy settings of the browser, ticking off "Prevent cross-site tracking" works
+
+# Deployment
+
+## Development
+
+1.  Clone [this repository](https://github.com/TimSchulz1991/project5-8gag-react).
+2.  Open your IDE and connect to your repo, then enter this command in the terminal:
+
+        npm install
+
+- Make sure your package.json dependencies look like this:
+
+      "dependencies": {
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^11.2.7",
+        "@testing-library/user-event": "^13.5.0",
+        "axios": "^0.27.2",
+        "bootstrap": "^4.6.0",
+        "jwt-decode": "^3.1.2",
+        "react": "^17.0.2",
+        "react-bootstrap": "^1.6.3",
+        "react-dom": "^17.0.2",
+        "react-infinite-scroll-component": "^6.1.0",
+        "react-router-dom": "^5.3.0",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^2.1.4"
+      },
+
+3.  Add your personal url for the deployed DRF API in the axiosDefaults.js file (as baseURL).
+3.  Git add, commit and push all changes to your repo.
+4.  Create or log in to an account on Heroku.
+5.  Create a new app on Heroku.
+6.  In the Deploy section on Heroku, go to Deployment method and add your GitHub repository.
+7.  Go down to Manual deploy and select deploy branch for early deployment.
+
+## Deployment
+
+1.  To create a production build, enter this command in your terminal:
+
+        npm run build
+
+2.  Git add, commit and push to your repo.
+3.  In the Deploy section on Heroku, go to Manual deploy and select deploy branch.
+4.  Go to the Settings tab and scroll down to Domains where you find the URL to your deployed site.
+
+# Credits
+
+## Code
+
+This React project code is predominantly based on the Moments walkthrough React project of CodeInstitute ([GitHub](https://github.com/Code-Institute-Solutions/moments)), as it provided all the functionality that I needed for my 8GAG project. I have built my own styles and functionalities on top of this, based on the projects needs, e.g. a topics filtering system and a different setup of posts (image required, topic required etc.). 
+
+## Content 
+
+The content of this README was inspired by previous project's READMEs that I have written. I also want to thank my friend Johan, for giving me access to his README file from his own React project, so that I could get inspiration from that as well ([his README](https://github.com/JFrdrkssn/llama/blob/main/README.md)).
+
+## Media
+
+All the memes in the currently deployed page have been either taken from 9GAG and were uploaded to 8GAG or are pictures uploaded by external users. 
+
+## Acknowledgements
+
+- A huge thanks to my colleague Ali for his ongoing help with all kinds of smaller issues and feedback throughout the project. Without you, the project would have taken me much longer to complete and I would have probably had a few more sleepless nights! 
+- My mentor, Antonio Rodriguez, at [Code Institute](https://codeinstitute.net/), for continuous helpful feedback and support.
+- The always super friendly and helpful tutor support at Code Institute.

@@ -18,6 +18,7 @@ import { fetchMoreData } from "../../utils/utils";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useHistory } from "react-router-dom";
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -28,6 +29,7 @@ function ProfilePage() {
         pageProfile: { results: [] },
     });
     const [profile] = profileData.pageProfile.results;
+    const history = useHistory();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,10 +47,16 @@ function ProfilePage() {
                 setHasLoaded(true);
             } catch (err) {
                 // console.log(err);
+                if (err.response?.status !== 404) {
+                    history.push("/");
+                }
+                if (err.response?.status !== 400) {
+                    history.push("/");
+                }
             }
         };
         fetchData();
-    }, [id, setProfileData]);
+    }, [id, setProfileData, history]);
 
     const mainProfile = (
         <>
@@ -70,12 +78,12 @@ function ProfilePage() {
                         </Col>
                     </Row>
                 </Col>
-                <Col lg={3}>
-                    
-                </Col>
+                <Col lg={3}></Col>
 
                 {profile?.content && (
-                    <Col className={`p-3 ${styles.Bio}`}>Bio: <br></br> {profile.content}</Col>
+                    <Col className={`p-3 ${styles.Bio}`}>
+                        Bio: <br></br> {profile.content}
+                    </Col>
                 )}
             </Row>
         </>
